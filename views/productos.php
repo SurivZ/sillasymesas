@@ -1,3 +1,17 @@
+<?php
+use mysqli;
+
+$conexion = new mysqli("localhost", "root", "", "sillasymesas");
+
+if ($conexion->connect_error)
+    die("Error de conexión: " . $conn->connect_error);
+
+$sql = "SELECT * FROM `productos`;";
+
+$result = $conn->query($query);
+
+echo $result;
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,22 +34,27 @@
 
 <body>
     <header class="header" id="inicio">
-        <p style="padding: 1em 1.5em; font-size: 1.5em; color: white; z-index: 20; position: relative;"><a
-                style="text-decoration: none; color: white;" href="/#galeria"><i class="fa-solid fa-arrow-left"></i>
-                Volver</a></p>
+        <p style="padding: 1em 1.5em; font-size: 1.5em; color: white; z-index: 20; position: relative;">
+            <a style="text-decoration: none; color: white;" href="/#galeria"><i
+                    class="fa-solid fa-arrow-left"></i>Volver</a>
+        </p>
     </header>
     <main>
         <h2 class="titulo"><strong>Productos</strong></h2>
         <div class="contenedor">
-            {% for producto in productos %}
-            <a href="{{ producto[3] }}" class="tarjeta">
-                <img src="{{ producto[4] }}" alt="{{ producto[1] }}" class="imagen">
-                <div class="texto">
-                    <h3 class="nombre">{{ producto[1] }}</h3>
-                    <p class="precio">$ {{ producto[2] }} COP</p>
-                </div>
-            </a>
-            {% endfor %}
+            <?php foreach ($productos as $producto): ?>
+                <a href="<?php echo $producto[3]; ?>" class="tarjeta">
+                    <img src="<?php echo $producto[4]; ?>" alt="<?php echo $producto[1]; ?>" class="imagen">
+                    <div class="texto">
+                        <h3 class="nombre">
+                            <?php echo $producto[1]; ?>
+                        </h3>
+                        <p class="precio">$
+                            <?php echo $producto[2]; ?> COP
+                        </p>
+                    </div>
+                </a>
+            <?php endforeach; ?>
         </div>
     </main>
     <footer id="social-net">

@@ -37,6 +37,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 5em;
+  min-height: 46.4vh;
 }
 .tarjeta {
   box-shadow: 0 0 5px rgb(66, 66, 66);
@@ -86,6 +87,7 @@ footer {
     hsla(218, 81%, 33%, 0.664) 100%
   );
   padding-bottom: 0.1px;
+  position: relative;
 }
 .footer-content {
   width: 90%;
